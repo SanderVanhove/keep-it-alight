@@ -847,3 +847,5 @@ autoplay = true
 
 [node name="Bonfire" parent="." instance=ExtResource( 5 )]
 position = Vector2( 184, 144 )
+message = "To live without Hope is to Cease to live.
+Fyodor Dostoevsky"

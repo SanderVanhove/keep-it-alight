@@ -105,7 +105,7 @@ func _handle_footsteps(delta):
 	else:
 		footsteps_timer = 0
 	
-	if PlayerInput.released_horizontal_movement():
+	if is_on_floor() and PlayerInput.released_horizontal_movement():
 		_play_random_sound(footstep_audio_player, footsteps)
 	
 	if is_in_the_air and is_on_floor():
