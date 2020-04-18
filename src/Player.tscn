@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/Player.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://sprites/lightTexture.png" type="Texture" id=3]
+[ext_resource path="res://sprites/lightTextureCompleteDarkness.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 7 )
@@ -57,6 +59,31 @@ tracks/0/keys = {
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
+
+[node name="Light" type="Light2D" parent="."]
+position = Vector2( 2.38419e-07, -9 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 3 )
+mode = 3
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0.952941 )
+shadow_buffer_size = 3000
+shadow_gradient_length = 0.1
+shadow_filter = 5
+shadow_filter_smooth = 26.5
+
+[node name="Dark" type="Light2D" parent="."]
+visible = false
+position = Vector2( 1.42109e-14, -9 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 4 )
+mode = 3
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0.952941 )
+shadow_buffer_size = 3000
+shadow_gradient_length = 0.1
+shadow_filter = 5
+shadow_filter_smooth = 26.5
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -10 )
