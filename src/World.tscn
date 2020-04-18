@@ -387,7 +387,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="TileSet" id=89]
-resource_local_to_scene = true
 0/name = "Tileset.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
@@ -825,7 +824,7 @@ resource_local_to_scene = true
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
-position = Vector2( 206, 97 )
+position = Vector2( 208, 97 )
 scale = Vector2( 28.1875, 15.625 )
 texture = ExtResource( 3 )
 

@@ -9,12 +9,13 @@ const AIR_FRICTION = .02
 const GRAVITY = 300
 const JUMP_FORCE = 100
 const WALL_GRAVITY = 40
-const WALL_JUMP_X_FORCE = 50
+const WALL_JUMP_X_FORCE = 100
+const MAX_WALL_SPEED = 100
 
 const LIGHT_DEGRADATION = .7
 const LIGHT_RECHARGE = 1.7
 const DARKNES_TIME = 2
-const MINIMUM_LIGHT = .07
+const MINIMUM_LIGHT = .1
 const MINIMUM_LIGHT_VIBRATION = .03
 
 
@@ -71,6 +72,7 @@ func _handle_wall_motion(delta):
 		motion.y += GRAVITY * delta
 	else:
 		motion.y += WALL_GRAVITY * delta
+	if motion.y > MAX_WALL_SPEED: motion.y = MAX_WALL_SPEED
 	
 	if PlayerInput.pressed_jump():
 		motion.y = -JUMP_FORCE

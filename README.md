@@ -9,3 +9,9 @@ Light based platformer
 * The player takes damage when stying in the dark too long.
 * Enemies are atrackted to light.
 * Player lives represent Hope.
+
+## Stack
+
+* Engine: Godot 3.2.1
+* 2D assets: Aseprite
+* Tileset creator: Tilesetter
