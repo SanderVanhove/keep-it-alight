@@ -86,10 +86,10 @@ shadow_filter = 5
 shadow_filter_smooth = 26.5
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -10 )
+position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 10
-frame = 6
+frame = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -7 )
