@@ -16,7 +16,6 @@ const LIGHT_DEGRADATION = .7
 const LIGHT_RECHARGE = 1.7
 const DARKNES_TIME = 2
 const MINIMUM_LIGHT = .1
-const MINIMUM_LIGHT_VIBRATION = .03
 
 
 var motion = Vector2.ZERO
@@ -25,9 +24,6 @@ var can_double_jump = true
 var facing_direction = -1
 var light_radius = 1
 var low_light_timer = 0
-var minimum_light = MINIMUM_LIGHT
-var minimum_light_delta = 0
-var timer = 1
 
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
@@ -120,14 +116,14 @@ func _update_sprite():
 
 func _update_light(delta):
 	if PlayerInput.is_moving_horizontaly() or motion.y < 0:
-		if light_radius < minimum_light: light_radius = minimum_light
+		if light_radius < MINIMUM_LIGHT: light_radius = MINIMUM_LIGHT
 		light_radius += LIGHT_RECHARGE * delta
 	else:
 		light_radius -= LIGHT_DEGRADATION * delta
 		
-	light_radius = clamp(light_radius, minimum_light, 1)
+	light_radius = clamp(light_radius, MINIMUM_LIGHT, 1)
 	
-	if Utils.compare_floats(light_radius, minimum_light):
+	if Utils.compare_floats(light_radius, MINIMUM_LIGHT):
 		low_light_timer += delta
 	else:
 		low_light_timer = 0
@@ -138,10 +134,4 @@ func _update_light(delta):
 	dark_light.visible = light_radius == 0
 	light.visible = light_radius > 0
 	
-	timer += delta * 4
-	var texture_scale = light_radius + lerp(
-		-MINIMUM_LIGHT_VIBRATION * light_radius,
-		MINIMUM_LIGHT_VIBRATION * light_radius,
-		sin(timer))
-	
-	light.texture_scale = texture_scale
+	light.texture_scale = light_radius

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Underground atmosphere - Wind 2 - Loop.wav-da40ec4272753d336f1aed766af91896.sample"
+
+[deps]
+
+source_file="res://audio/Underground atmosphere - Wind 2 - Loop.wav"
+dest_files=[ "res://.import/Underground atmosphere - Wind 2 - Loop.wav-da40ec4272753d336f1aed766af91896.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
