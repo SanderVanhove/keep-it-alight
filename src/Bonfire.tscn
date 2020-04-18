@@ -87,7 +87,7 @@ frame = 12
 
 [node name="Crackling" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-volume_db = 10.697
+volume_db = 16.64
 max_distance = 400.0
 
 [node name="Flint" type="AudioStreamPlayer2D" parent="."]

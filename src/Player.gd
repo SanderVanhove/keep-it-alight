@@ -38,6 +38,13 @@ const FOOTSTEP_TIME = .3
 var footsteps_timer = 0
 var is_in_the_air = false
 onready var footstep_audio_player = $FootstepAudioPlayer
+
+var landings = [
+	preload("res://audio/landing_1.WAV"),
+	preload("res://audio/landing_2.WAV"),
+	preload("res://audio/landing_3.WAV"),
+	preload("res://audio/landing_4.WAV"),
+]
 onready var landing = $Landing
 
 onready var sprite = $Sprite
@@ -83,9 +90,9 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, Vector2.UP)
 
 
-func _play_random_footstep_sound():
-	footstep_audio_player.stream = footsteps[int(rand_range(0, len(footsteps)))]
-	footstep_audio_player.play()
+func _play_random_sound(source, sounds):
+	source.stream = sounds[int(rand_range(0, len(sounds)))]
+	source.play()
 
 
 func _handle_footsteps(delta):
@@ -94,15 +101,15 @@ func _handle_footsteps(delta):
 		
 		if footsteps_timer >= FOOTSTEP_TIME:
 			footsteps_timer -= FOOTSTEP_TIME
-			_play_random_footstep_sound()
+			_play_random_sound(footstep_audio_player, footsteps)
 	else:
 		footsteps_timer = 0
 	
 	if PlayerInput.released_horizontal_movement():
-		_play_random_footstep_sound()
+		_play_random_sound(footstep_audio_player, footsteps)
 	
 	if is_in_the_air and is_on_floor():
-		landing.play()
+		_play_random_sound(landing, landings)
 
 
 func _handle_wall_motion(delta):
