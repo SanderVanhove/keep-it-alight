@@ -25,6 +25,21 @@ var facing_direction = -1
 var light_radius = 1
 var low_light_timer = 0
 
+var footsteps = [
+	preload("res://audio/footsteps/footstep_gravel_run_10.WAV"),
+	preload("res://audio/footsteps/footstep_gravel_run_11.WAV"),
+	preload("res://audio/footsteps/footstep_gravel_run_12.WAV"),
+	preload("res://audio/footsteps/footstep_gravel_run_13.WAV"),
+	preload("res://audio/footsteps/footstep_gravel_run_14.WAV"),
+	preload("res://audio/footsteps/footstep_gravel_run_15.WAV"),
+	preload("res://audio/footsteps/footstep_gravel_run_16.WAV"),
+]
+const FOOTSTEP_TIME = .3
+var footsteps_timer = 0
+var is_in_the_air = false
+onready var footstep_audio_player = $FootstepAudioPlayer
+onready var landing = $Landing
+
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var light = $Light
@@ -44,6 +59,9 @@ class PlayerInput:
 	static func released_jump():
 		return Input.is_action_just_released("ui_up")
 
+	static func released_horizontal_movement():
+		return Input.is_action_just_released("ui_right") or Input.is_action_just_released("ui_left")
+
 
 func _physics_process(delta):
 	if PlayerInput.is_moving_horizontaly():
@@ -58,9 +76,33 @@ func _physics_process(delta):
 	else:
 		_handle_inair_motion(delta)
 	
+	_handle_footsteps(delta)
 	_update_light(delta)
 	_update_sprite()
+	is_in_the_air = not is_on_floor()
 	motion = move_and_slide(motion, Vector2.UP)
+
+
+func _play_random_footstep_sound():
+	footstep_audio_player.stream = footsteps[int(rand_range(0, len(footsteps)))]
+	footstep_audio_player.play()
+
+
+func _handle_footsteps(delta):
+	if is_on_floor() and PlayerInput.is_moving_horizontaly():
+		footsteps_timer += delta
+		
+		if footsteps_timer >= FOOTSTEP_TIME:
+			footsteps_timer -= FOOTSTEP_TIME
+			_play_random_footstep_sound()
+	else:
+		footsteps_timer = 0
+	
+	if PlayerInput.released_horizontal_movement():
+		_play_random_footstep_sound()
+	
+	if is_in_the_air and is_on_floor():
+		landing.play()
 
 
 func _handle_wall_motion(delta):
