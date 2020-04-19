@@ -29,8 +29,8 @@ onready var sprite = $Sprite
 
 onready var patrol_start = $Patrol_Start
 onready var patrol_end = $Patrol_End
-onready var original_start_patrol = patrol_start.position
-onready var original_end_patrol = patrol_end.position
+onready var original_start_patrol = patrol_start.global_position
+onready var original_end_patrol = patrol_end.global_position
 
 
 func _ready():
@@ -97,8 +97,8 @@ func _on_MonsterDetection_area_exited(area):
 		
 		yield(get_tree().create_timer(1), "timeout")
 		target = patrol_start
-		patrol_start.position = original_start_patrol
-		patrol_end.position = original_end_patrol
+		patrol_start.global_position = original_start_patrol
+		patrol_end.global_position = original_end_patrol
 
 
 func _on_MonsterDetection_body_entered(body):

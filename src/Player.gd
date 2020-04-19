@@ -27,6 +27,7 @@ var low_light_timer = 0
 var is_dead = false
 var played_dead_animation = false
 var start_position = null
+var never_moved = true
 
 var footsteps = [
 	preload("res://audio/footsteps/footstep_gravel_run_10.WAV"),
@@ -102,6 +103,8 @@ func _physics_process(delta):
 			motion.x += PlayerInput.get_x_input() * ACCELERATION * delta
 			motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
 			facing_direction = -1 if motion.x >= 0 else 1
+			
+			never_moved = false
 	
 		if is_on_floor():
 			_handle_floor_motion(delta)
@@ -198,7 +201,7 @@ func _update_sprite():
 
 
 func _update_light(delta):
-	if (PlayerInput.is_moving_horizontaly() or motion.y < 0) and not is_dead:
+	if (PlayerInput.is_moving_horizontaly() or motion.y < 0 or never_moved) and not is_dead:
 		if light_radius < MINIMUM_LIGHT: light_radius = MINIMUM_LIGHT
 		light_radius += LIGHT_RECHARGE * delta
 	else:

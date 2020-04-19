@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/piano_accents_3.wav-f463c8f382d0a51e551b1dc61899dee3.sample"
+
+[deps]
+
+source_file="res://audio/piano_accents_3.wav"
+dest_files=[ "res://.import/piano_accents_3.wav-f463c8f382d0a51e551b1dc61899dee3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

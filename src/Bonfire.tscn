@@ -58,7 +58,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 10, 24 )
+extents = Vector2( 10, 58 )
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 29.0
@@ -80,7 +80,7 @@ anims/StillWood = SubResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 light_mask = 0
-position = Vector2( 0, -24 )
+position = Vector2( 0, -58 )
 shape = SubResource( 4 )
 
 [node name="Bonfire" type="Sprite" parent="."]
@@ -124,6 +124,7 @@ __meta__ = {
 [node name="BonfireInfluence" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BonfireInfluence"]
+visible = false
 position = Vector2( 0, -11 )
 shape = SubResource( 5 )
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://sprites/Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -7,7 +7,10 @@
 [ext_resource path="res://Bonfire.tscn" type="PackedScene" id=5]
 [ext_resource path="res://audio/Underground atmosphere - Wind 2 - Loop.wav" type="AudioStream" id=6]
 [ext_resource path="res://Spike.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Monster.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Explanation.tscn" type="PackedScene" id=8]
+[ext_resource path="res://audio/piano_accents_1.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/piano_accents_2.wav" type="AudioStream" id=10]
+[ext_resource path="res://audio/piano_accents_3.wav" type="AudioStream" id=11]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 4, 4, 4, 16, 16, 16, 16, 4 )
@@ -858,5 +861,20 @@ position = Vector2( 253, 112 )
 [node name="Spike2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 269, 112 )
 
-[node name="Monster" parent="." instance=ExtResource( 8 )]
-position = Vector2( 243, 52 )
+[node name="Explanation" parent="." instance=ExtResource( 8 )]
+position = Vector2( 136, 115 )
+text = "I'm alone, just like you."
+music = ExtResource( 9 )
+time = 0.7
+
+[node name="Explanation2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 136, 130 )
+text = "Walk and jump with the arrow keys."
+music = ExtResource( 10 )
+time = 2.3
+
+[node name="Explanation3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 136, 146 )
+text = "Moving keeps the hope alive, and my  light!"
+music = ExtResource( 11 )
+time = 4.0

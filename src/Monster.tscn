@@ -84,7 +84,7 @@ frame = 1
 [node name="Light" parent="." instance=ExtResource( 3 )]
 position = Vector2( -2.8026e-45, -8 )
 texture_scale = 0.2
-color = Color( 0.498039, 0.498039, 0.498039, 1 )
+color = Color( 0.882353, 0.180392, 0.180392, 1 )
 mode = 0
 
 [node name="HeartBeatPlayer" type="AudioStreamPlayer2D" parent="."]
