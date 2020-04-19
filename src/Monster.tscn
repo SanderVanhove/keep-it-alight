@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Monster.gd" type="Script" id=2]
 [ext_resource path="res://ShimmeringLight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://audio/player/heartbeat_slow.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -31,6 +32,12 @@ position = Vector2( -1.26218e-29, -9 )
 texture_scale = 0.2
 color = Color( 0.498039, 0.498039, 0.498039, 1 )
 mode = 0
+
+[node name="HeartBeatPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 6.538
+autoplay = true
+max_distance = 300.0
 [connection signal="area_entered" from="MonsterDetection" to="." method="_on_MonsterDetection_area_entered"]
 [connection signal="area_exited" from="MonsterDetection" to="." method="_on_MonsterDetection_area_exited"]
 [connection signal="body_entered" from="MonsterDetection" to="." method="_on_MonsterDetection_body_entered"]
