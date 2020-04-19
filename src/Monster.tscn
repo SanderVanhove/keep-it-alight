@@ -90,14 +90,14 @@ mode = 0
 
 [node name="HeartBeatPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-volume_db = 6.538
+volume_db = -0.593
 autoplay = true
 max_distance = 200.0
 
 [node name="ChasePlayer" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -110, 0 )
 stream = ExtResource( 5 )
-volume_db = -7.131
+volume_db = -8.914
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 2 )
@@ -105,7 +105,7 @@ anims/Die = SubResource( 4 )
 anims/Idle = SubResource( 3 )
 
 [node name="DiePlayer" type="AudioStreamPlayer2D" parent="."]
-volume_db = 20.206
+volume_db = 6.538
 bus = "Reverb"
 
 [node name="Patrol_End" type="Node2D" parent="."]

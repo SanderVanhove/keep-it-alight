@@ -92,16 +92,18 @@ frame = 12
 
 [node name="Crackling" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-volume_db = 16.64
+volume_db = 1.782
 max_distance = 400.0
 bus = "Reverb"
 
 [node name="Flint" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+volume_db = -6.537
 bus = "Reverb"
 
 [node name="Ignite" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+volume_db = -17.829
 bus = "Reverb"
 
 [node name="Label" type="Label" parent="."]
@@ -130,6 +132,6 @@ shape = SubResource( 5 )
 
 [node name="Piano" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = 4.754
+volume_db = -4.755
 bus = "Reverb"
 [connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]

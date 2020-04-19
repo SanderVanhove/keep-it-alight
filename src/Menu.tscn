@@ -55,6 +55,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -5.349
+volume_db = -8.915
 autoplay = true
+bus = "Reverb"
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -50,8 +50,6 @@ func _process(delta):
 		vector = (target.global_position - position).normalized() * MOVEMENT_SPEED
 		move_and_slide(vector)
 		animationPlayer.play("Attack")
-		
-		
 	else:
 		animationPlayer.play("Idle")
 		
@@ -88,6 +86,15 @@ func _on_MonsterDetection_area_entered(area):
 		queue_free()
 
 
+func _resume_patrol():
+	if target: return
+	
+	target = patrol_start
+	patrol_start.global_position = original_start_patrol
+	patrol_end.global_position = original_end_patrol
+	
+
+
 func _on_MonsterDetection_area_exited(area):
 	if area.get_name() == "VisibilityArea":
 		is_active = false
@@ -96,10 +103,8 @@ func _on_MonsterDetection_area_exited(area):
 		heartBeatPlayer.stream = slowHearthBeat
 		heartBeatPlayer.play()
 		
-		yield(get_tree().create_timer(1), "timeout")
-		target = patrol_start
-		patrol_start.global_position = original_start_patrol
-		patrol_end.global_position = original_end_patrol
+		yield(get_tree().create_timer(1.5), "timeout")
+		_resume_patrol()
 
 
 func _on_MonsterDetection_body_entered(body):
