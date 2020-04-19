@@ -57,6 +57,12 @@ var death_sounds = [
 	preload("res://audio/player/death_4.wav"),
 	preload("res://audio/player/death_5.wav"),
 ]
+var ooh_sounds = [
+	preload("res://audio/player/ooh_1.wav"),
+	preload("res://audio/player/ooh_2.wav"),
+	preload("res://audio/player/ooh_3.wav"),
+	preload("res://audio/player/ooh_4.wav"),
+]
 onready var voice_soundplayer = $VoiceAudioPlayer
 
 onready var sprite = $Sprite
@@ -233,3 +239,5 @@ func die():
 
 func encounter_bonfire(bonfire):
 	last_bonfire = bonfire
+	yield(get_tree().create_timer(.8), "timeout")
+	_play_random_sound(voice_soundplayer, ooh_sounds)

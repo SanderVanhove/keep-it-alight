@@ -23,6 +23,7 @@ var fastHearthBeat = preload("res://audio/player/heartbeat_fast.wav")
 onready var light = $Light
 onready var heartBeatPlayer = $HeartBeatPlayer
 onready var diePlayer = $DiePlayer
+onready var chase_player = $ChasePlayer
 onready var animationPlayer = $AnimationPlayer
 onready var sprite = $Sprite
 
@@ -73,8 +74,10 @@ func _on_MonsterDetection_area_entered(area):
 		
 		heartBeatPlayer.stream = fastHearthBeat
 		heartBeatPlayer.play()
+		chase_player.play()
 	if area.get_name() == "BonfireInfluence":
 		is_dead = true
+		chase_player.stop()
 		diePlayer.stream = DIE_SOUNDS[int(rand_range(0, len(DIE_SOUNDS)))]
 		diePlayer.play()
 		animationPlayer.play("Die")
@@ -88,7 +91,7 @@ func _on_MonsterDetection_area_exited(area):
 	if area.get_name() == "VisibilityArea":
 		is_active = false
 		target = null
-		
+		chase_player.stop()
 		heartBeatPlayer.stream = slowHearthBeat
 		heartBeatPlayer.play()
 		
