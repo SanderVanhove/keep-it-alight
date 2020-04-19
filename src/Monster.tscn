@@ -82,6 +82,7 @@ hframes = 18
 frame = 1
 
 [node name="Light" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -2.8026e-45, -8 )
 texture_scale = 0.2
 color = Color( 0.882353, 0.180392, 0.180392, 1 )
@@ -91,7 +92,7 @@ mode = 0
 stream = ExtResource( 4 )
 volume_db = 6.538
 autoplay = true
-max_distance = 300.0
+max_distance = 200.0
 
 [node name="ChasePlayer" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -110, 0 )

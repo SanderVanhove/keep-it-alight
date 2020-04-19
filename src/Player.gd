@@ -9,7 +9,7 @@ const AIR_FRICTION = .02
 const GRAVITY = 300
 const JUMP_FORCE = 100
 const WALL_GRAVITY = 40
-const WALL_JUMP_X_FORCE = 100
+const WALL_JUMP_X_FORCE = 250
 const MAX_WALL_SPEED = 100
 
 const LIGHT_DEGRADATION = .7
@@ -102,6 +102,7 @@ class PlayerInput:
 
 func _ready():
 	start_position = position
+	light.visible = true
 
 
 func _physics_process(delta):

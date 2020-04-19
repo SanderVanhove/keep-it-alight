@@ -36,6 +36,7 @@ onready var original_end_patrol = patrol_end.global_position
 func _ready():
 	start_position = position
 	target = patrol_end
+	light.visible = true
 
 
 func _process(delta):

@@ -13,10 +13,8 @@ export(String, MULTILINE) var message
 
 
 func _ready():
-	animation_player.play("StillWood")
-	light.visible = false
-	fire_crackling.volume_db
 	label.text = message
+	animation_player.play("StillWood")
 
 
 func _process(delta):
@@ -27,11 +25,13 @@ func _on_Area2D_body_entered(body):
 	if not light.visible and (body.get_name() == "Player"):
 		light.visible = true
 		label.visible = true
+		
+		animation_player.play("Ignite")
+		animation_player.queue("Burn")
+		
 		fire_crackling.play()
 		fire_flint.play()
 		fire_ignite.play()
-		animation_player.play("Ignite")
-		animation_player.queue("Burn")
 		
 		body.encounter_bonfire(self)
 		

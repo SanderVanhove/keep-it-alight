@@ -27,5 +27,6 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-volume_db = 4.16
+volume_db = 7.131
+max_distance = 150.0
 [connection signal="body_entered" from="." to="." method="_on_Explanation_body_entered"]

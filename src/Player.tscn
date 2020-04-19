@@ -83,8 +83,9 @@ collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Light" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 6.01853e-36, -9 )
-color = Color( 0.752941, 0.752941, 0.752941, 1 )
+color = Color( 0.713726, 0.713726, 0.713726, 1 )
 
 [node name="Dark" type="Light2D" parent="."]
 visible = false
@@ -102,7 +103,6 @@ shadow_filter_smooth = 26.5
 position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 14
-frame = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -7 )

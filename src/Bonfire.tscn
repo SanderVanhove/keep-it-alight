@@ -14,7 +14,7 @@ resource_name = "Burn"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Bonfire:frame")
+tracks/0/path = NodePath("BonfireSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -29,7 +29,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "Ignite"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Bonfire:frame")
+tracks/0/path = NodePath("BonfireSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -45,7 +45,7 @@ tracks/0/keys = {
 resource_name = "StillWood"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Bonfire:frame")
+tracks/0/path = NodePath("BonfireSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -67,6 +67,7 @@ radius = 29.0
 script = ExtResource( 3 )
 
 [node name="Light" parent="." instance=ExtResource( 2 )]
+visible = false
 position = Vector2( 5.96046e-08, -11 )
 texture_scale = 5.0
 color = Color( 1, 0.815686, 0.772549, 1 )
@@ -78,17 +79,16 @@ anims/Ignite = SubResource( 2 )
 anims/StillWood = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 light_mask = 0
 position = Vector2( 0, -58 )
 shape = SubResource( 4 )
 
-[node name="Bonfire" type="Sprite" parent="."]
+[node name="BonfireSprite" type="Sprite" parent="."]
 light_mask = 0
 position = Vector2( 0, -16 )
 texture = ExtResource( 1 )
 hframes = 17
-frame = 16
+frame = 12
 
 [node name="Crackling" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
@@ -106,10 +106,11 @@ bus = "Reverb"
 
 [node name="Label" type="Label" parent="."]
 visible = false
+light_mask = 0
 margin_left = -96.0
-margin_top = -64.0
+margin_top = -73.0
 margin_right = 97.0
-margin_bottom = -17.0
+margin_bottom = -26.0
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 7 )
 text = "To live without Hope is to Cease to live.
@@ -124,7 +125,6 @@ __meta__ = {
 [node name="BonfireInfluence" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BonfireInfluence"]
-visible = false
 position = Vector2( 0, -11 )
 shape = SubResource( 5 )
 
@@ -132,5 +132,4 @@ shape = SubResource( 5 )
 stream = ExtResource( 8 )
 volume_db = 4.754
 bus = "Reverb"
-[connection signal="area_shape_entered" from="." to="." method="_on_Area2D_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
