@@ -17,7 +17,7 @@ func _ready():
 	animation_player.play("StillWood")
 
 
-func _process(delta):
+func _physics_process(delta):
 	light.texture_scale = 1
 
 

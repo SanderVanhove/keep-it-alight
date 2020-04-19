@@ -43,6 +43,8 @@ __meta__ = {
 position = Vector2( 172, 52 )
 color = Color( 1, 0.607843, 0, 1 )
 mode = 0
+shadow_color = Color( 0.294118, 0.294118, 0.294118, 0.952941 )
+shadow_filter = 2
 
 [node name="VSeparator" type="VSeparator" parent="."]
 visible = false

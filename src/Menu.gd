@@ -3,7 +3,7 @@ extends Node2D
 onready var light = $Light
 
 
-func _process(delta):
+func _physics_process(delta):
 	light.texture_scale = 2
 
 

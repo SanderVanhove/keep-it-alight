@@ -92,27 +92,27 @@ frame = 12
 
 [node name="Crackling" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-volume_db = 1.782
+volume_db = 2.376
 max_distance = 400.0
 bus = "Reverb"
 
 [node name="Flint" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = -6.537
+volume_db = -4.754
 bus = "Reverb"
 
 [node name="Ignite" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
-volume_db = -17.829
+volume_db = -10.697
 bus = "Reverb"
 
 [node name="Label" type="Label" parent="."]
 visible = false
 light_mask = 0
 margin_left = -96.0
-margin_top = -73.0
+margin_top = -80.0
 margin_right = 97.0
-margin_bottom = -26.0
+margin_bottom = -33.0
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 7 )
 text = "To live without Hope is to Cease to live.

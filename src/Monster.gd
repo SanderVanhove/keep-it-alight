@@ -25,7 +25,7 @@ onready var heartBeatPlayer = $HeartBeatPlayer
 onready var diePlayer = $DiePlayer
 onready var chase_player = $ChasePlayer
 onready var animationPlayer = $AnimationPlayer
-onready var sprite = $Sprite
+onready var sprite = $MonsterSprite
 
 onready var patrol_start = $Patrol_Start
 onready var patrol_end = $Patrol_End
@@ -37,9 +37,10 @@ func _ready():
 	start_position = position
 	target = patrol_end
 	light.visible = true
+	animationPlayer.play("Idle")
 
 
-func _process(delta):
+func _physics_process(delta):
 	light.texture_scale = .2
 	
 	if is_dead: return
@@ -49,10 +50,7 @@ func _process(delta):
 	if is_active:
 		vector = (target.global_position - position).normalized() * MOVEMENT_SPEED
 		move_and_slide(vector)
-		animationPlayer.play("Attack")
 	else:
-		animationPlayer.play("Idle")
-		
 		if target:
 			var distance = target.global_position - position
 			vector = distance.normalized() * SLOW_MOVEMENT_SPEED
@@ -67,14 +65,16 @@ func _process(delta):
 
 
 func _on_MonsterDetection_area_entered(area):
-	if area.get_name() == "VisibilityArea":
+	var area_name = area.get_name()
+	if area_name == "VisibilityArea":
 		target = area
 		is_active = true
 		
 		heartBeatPlayer.stream = fastHearthBeat
 		heartBeatPlayer.play()
 		chase_player.play()
-	if area.get_name() == "BonfireInfluence":
+		animationPlayer.play("Attack")
+	if area_name == "BonfireInfluence":
 		is_dead = true
 		chase_player.stop()
 		diePlayer.stream = DIE_SOUNDS[int(rand_range(0, len(DIE_SOUNDS)))]
@@ -93,6 +93,7 @@ func _resume_patrol():
 	patrol_start.global_position = original_start_patrol
 	patrol_end.global_position = original_end_patrol
 	
+	animationPlayer.play("Idle")
 
 
 func _on_MonsterDetection_area_exited(area):
@@ -110,7 +111,6 @@ func _on_MonsterDetection_area_exited(area):
 func _on_MonsterDetection_body_entered(body):
 	if body.get_name() == "Player":
 		body.die()
-		is_active = false
 		
 		heartBeatPlayer.stream = slowHearthBeat
 		heartBeatPlayer.play()
@@ -118,3 +118,4 @@ func _on_MonsterDetection_body_entered(body):
 		yield(get_tree().create_timer(1.5), "timeout")
 		
 		position = start_position
+		_resume_patrol()

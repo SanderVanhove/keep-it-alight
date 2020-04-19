@@ -28,6 +28,7 @@ var is_dead = false
 var played_dead_animation = false
 var start_position = null
 var never_moved = true
+var is_outside = false
 
 var footsteps = [
 	preload("res://audio/footsteps/footstep_gravel_run_10.WAV"),
@@ -209,6 +210,8 @@ func _update_sprite():
 
 
 func _update_light(delta):
+	if is_outside: return
+	
 	if (PlayerInput.is_moving_horizontaly() or motion.y < 0 or never_moved) and not is_dead:
 		if light_radius < MINIMUM_LIGHT: light_radius = MINIMUM_LIGHT
 		light_radius += LIGHT_RECHARGE * delta
@@ -253,3 +256,9 @@ func encounter_bonfire(bonfire):
 	last_bonfire = bonfire
 	yield(get_tree().create_timer(.8), "timeout")
 	_play_random_sound(voice_soundplayer, ooh_sounds)
+
+
+func set_outside(going):
+	is_outside = going
+	light.visible = not going
+	dark_light.visible = not going

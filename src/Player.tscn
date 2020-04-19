@@ -86,6 +86,7 @@ script = ExtResource( 2 )
 visible = false
 position = Vector2( 6.01853e-36, -9 )
 color = Color( 0.713726, 0.713726, 0.713726, 1 )
+shadow_enabled = true
 
 [node name="Dark" type="Light2D" parent="."]
 visible = false
@@ -121,17 +122,17 @@ editor_draw_drag_margin = true
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 6 )
-volume_db = -35.063
+volume_db = -29.714
 bus = "Reverb"
 
 [node name="Landing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -33.874
+volume_db = -28.526
 pitch_scale = 0.89
 bus = "Reverb"
 
 [node name="VoiceAudioPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -9.508
+volume_db = -8.319
 bus = "Reverb"
 
 [node name="VisibilityArea" type="Area2D" parent="."]
