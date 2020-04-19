@@ -875,6 +875,6 @@ time = 2.3
 
 [node name="Explanation3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 136, 146 )
-text = "Moving keeps the hope alive, and my  light!"
+text = "Moving keeps the hope alive, and our  light!"
 music = ExtResource( 11 )
 time = 4.0
