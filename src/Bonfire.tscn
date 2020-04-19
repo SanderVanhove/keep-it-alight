@@ -90,12 +90,15 @@ frame = 12
 stream = ExtResource( 4 )
 volume_db = 16.64
 max_distance = 400.0
+bus = "Reverb"
 
 [node name="Flint" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+bus = "Reverb"
 
 [node name="Ignite" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+bus = "Reverb"
 
 [node name="Label" type="Label" parent="."]
 visible = false

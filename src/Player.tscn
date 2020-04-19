@@ -122,14 +122,17 @@ editor_draw_drag_margin = true
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 6 )
 volume_db = -16.046
+bus = "Reverb"
 
 [node name="Landing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -14.263
 pitch_scale = 0.89
+bus = "Reverb"
 
 [node name="VoiceAudioPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 3.566
+bus = "Reverb"
 
 [node name="VisibilityArea" type="Area2D" parent="."]
 collision_layer = 3
