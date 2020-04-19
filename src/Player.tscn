@@ -118,6 +118,7 @@ anims/Stand = SubResource( 5 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 smoothing_enabled = true
+offset_v = -1.0
 editor_draw_drag_margin = true
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer" parent="."]

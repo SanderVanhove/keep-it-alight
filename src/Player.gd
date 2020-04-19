@@ -29,6 +29,7 @@ var played_dead_animation = false
 var start_position = null
 var never_moved = true
 var is_outside = false
+var is_end = false
 
 var footsteps = [
 	preload("res://audio/footsteps/footstep_gravel_run_10.WAV"),
@@ -107,6 +108,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_end: return
+	
 	if not is_dead:
 		if PlayerInput.is_moving_horizontaly():
 			motion.x += PlayerInput.get_x_input() * ACCELERATION * delta
@@ -262,3 +265,12 @@ func set_outside(going):
 	is_outside = going
 	light.visible = not going
 	dark_light.visible = not going
+	$Camera2D.offset_v = -1 if going else 0
+	$Camera2D.drag_margin_bottom = .3 if going else .2
+	footstep_audio_player.bus = "Master" if going else "Reverb"
+	landing.bus = "Master" if going else "Reverb"
+	voice_soundplayer.bus = "Master" if going else "Reverb"
+
+
+func stop():
+	is_end = true
