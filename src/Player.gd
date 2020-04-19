@@ -63,6 +63,8 @@ onready var animation_player = $AnimationPlayer
 onready var light = $Light
 onready var dark_light = $Dark
 
+onready var visibilityShape = $VisibilityArea/VisibiliityShape
+
 var last_bonfire = null
 
 
@@ -205,9 +207,12 @@ func _update_light(delta):
 	light.visible = light_radius > 0
 	
 	light.texture_scale = light_radius
+	visibilityShape.scale = Vector2(light_radius, light_radius)
 
 
 func die():
+	if is_dead: return
+	
 	is_dead = true
 	motion.x = 0
 	motion.y = 0

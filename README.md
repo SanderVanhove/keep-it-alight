@@ -15,3 +15,5 @@ Light based platformer
 * Engine: Godot 3.2.1
 * 2D assets: Aseprite
 * Tileset creator: Tilesetter
+* Audio recording: Audacity
+* Music: Ableton Live
