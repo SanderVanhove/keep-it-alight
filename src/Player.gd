@@ -26,6 +26,7 @@ var light_radius = 1
 var low_light_timer = 0
 var is_dead = false
 var played_dead_animation = false
+var start_position = null
 
 var footsteps = [
 	preload("res://audio/footsteps/footstep_gravel_run_10.WAV"),
@@ -83,6 +84,10 @@ class PlayerInput:
 
 	static func released_horizontal_movement():
 		return Input.is_action_just_released("ui_right") or Input.is_action_just_released("ui_left")
+
+
+func _ready():
+	start_position = position
 
 
 func _physics_process(delta):
@@ -223,7 +228,7 @@ func die():
 	yield(get_tree().create_timer(1.5), "timeout")
 	
 	is_dead = false
-	self.position = last_bonfire.position
+	self.position = last_bonfire.position if last_bonfire else start_position
 
 
 func encounter_bonfire(bonfire):

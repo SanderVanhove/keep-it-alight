@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/die_1.wav-f5e9b0ffff36fe00804a04143bc9e962.sample"
+
+[deps]
+
+source_file="res://audio/monster/die_1.wav"
+dest_files=[ "res://.import/die_1.wav-f5e9b0ffff36fe00804a04143bc9e962.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
