@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://sprites/player-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -10,7 +10,22 @@
 extents = Vector2( 3, 7 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "Jump"
+resource_name = "Die"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 12, 13 ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -25,8 +40,7 @@ tracks/0/keys = {
 "values": [ 9 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Run"
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -42,8 +56,7 @@ tracks/0/keys = {
 "values": [ 3, 4, 5, 6, 7, 8 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Stand"
+[sub_resource type="Animation" id=5]
 length = 2.1
 loop = true
 tracks/0/type = "value"
@@ -59,7 +72,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="AudioStreamSample" id=5]
+[sub_resource type="AudioStreamSample" id=6]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -83,16 +96,18 @@ shadow_filter_smooth = 26.5
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
-hframes = 10
+hframes = 14
+frame = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -7 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Jump = SubResource( 2 )
-anims/Run = SubResource( 3 )
-anims/Stand = SubResource( 4 )
+anims/Die = SubResource( 2 )
+anims/Jump = SubResource( 3 )
+anims/Run = SubResource( 4 )
+anims/Stand = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -100,10 +115,13 @@ smoothing_enabled = true
 editor_draw_drag_margin = true
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 5 )
-volume_db = -7.726
+stream = SubResource( 6 )
+volume_db = -16.046
 
 [node name="Landing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -14.263
 pitch_scale = 0.89
+
+[node name="VoiceAudioPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 3.566

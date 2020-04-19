@@ -32,3 +32,4 @@ func _on_Area2D_body_entered(body):
 		animation_player.play("Ignite")
 		animation_player.queue("Burn")
 		
+		body.encounter_bonfire(self)

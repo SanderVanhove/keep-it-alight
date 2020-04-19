@@ -24,6 +24,8 @@ var can_double_jump = true
 var facing_direction = -1
 var light_radius = 1
 var low_light_timer = 0
+var is_dead = false
+var played_dead_animation = false
 
 var footsteps = [
 	preload("res://audio/footsteps/footstep_gravel_run_10.WAV"),
@@ -47,10 +49,21 @@ var landings = [
 ]
 onready var landing = $Landing
 
+var death_sounds = [
+	preload("res://audio/player/death_1.wav"),
+	preload("res://audio/player/death_2.wav"),
+	preload("res://audio/player/death_3.wav"),
+	preload("res://audio/player/death_4.wav"),
+	preload("res://audio/player/death_5.wav"),
+]
+onready var voice_soundplayer = $VoiceAudioPlayer
+
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var light = $Light
 onready var dark_light = $Dark
+
+var last_bonfire = null
 
 
 class PlayerInput:
@@ -71,19 +84,23 @@ class PlayerInput:
 
 
 func _physics_process(delta):
-	if PlayerInput.is_moving_horizontaly():
-		motion.x += PlayerInput.get_x_input() * ACCELERATION * delta
-		motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
-		facing_direction = -1 if motion.x >= 0 else 1
-
-	if is_on_floor():
-		_handle_floor_motion(delta)
-	elif is_on_wall():
-		_handle_wall_motion(delta)
-	else:
-		_handle_inair_motion(delta)
+	if not is_dead:
+		if PlayerInput.is_moving_horizontaly():
+			motion.x += PlayerInput.get_x_input() * ACCELERATION * delta
+			motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
+			facing_direction = -1 if motion.x >= 0 else 1
 	
-	_handle_footsteps(delta)
+		if is_on_floor():
+			_handle_floor_motion(delta)
+		elif is_on_wall():
+			_handle_wall_motion(delta)
+		else:
+			_handle_inair_motion(delta)
+	
+		_handle_footsteps(delta)
+	else:
+		motion.y += GRAVITY * delta
+	
 	_update_light(delta)
 	_update_sprite()
 	is_in_the_air = not is_on_floor()
@@ -155,7 +172,11 @@ func _handle_inair_motion(delta):
 func _update_sprite():
 	sprite.flip_h = facing_direction > 0
 
-	if not is_on_floor():
+	if is_dead:
+		if not played_dead_animation:
+			animation_player.play("Die")
+			played_dead_animation = true
+	elif not is_on_floor():
 		animation_player.play("Jump")
 	elif PlayerInput.is_moving_horizontaly():
 		animation_player.play("Run")
@@ -164,7 +185,7 @@ func _update_sprite():
 
 
 func _update_light(delta):
-	if PlayerInput.is_moving_horizontaly() or motion.y < 0:
+	if (PlayerInput.is_moving_horizontaly() or motion.y < 0) and not is_dead:
 		if light_radius < MINIMUM_LIGHT: light_radius = MINIMUM_LIGHT
 		light_radius += LIGHT_RECHARGE * delta
 	else:
@@ -184,3 +205,21 @@ func _update_light(delta):
 	light.visible = light_radius > 0
 	
 	light.texture_scale = light_radius
+
+
+func die():
+	is_dead = true
+	motion.x = 0
+	motion.y = 0
+	played_dead_animation = false
+	
+	_play_random_sound(voice_soundplayer, death_sounds)
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	
+	is_dead = false
+	self.position = last_bonfire.position
+
+
+func encounter_bonfire(bonfire):
+	last_bonfire = bonfire
