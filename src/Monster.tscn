@@ -78,7 +78,7 @@ light_mask = 0
 position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 18
-frame = 17
+frame = 1
 
 [node name="Light" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2.8026e-45, -8 )
@@ -99,6 +99,11 @@ anims/Idle = SubResource( 3 )
 
 [node name="DiePlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = 20.206
+
+[node name="Patrol_End" type="Node2D" parent="."]
+position = Vector2( -110, 0 )
+
+[node name="Patrol_Start" type="Node2D" parent="."]
 [connection signal="area_entered" from="MonsterDetection" to="." method="_on_MonsterDetection_area_entered"]
 [connection signal="area_exited" from="MonsterDetection" to="." method="_on_MonsterDetection_area_exited"]
 [connection signal="body_entered" from="MonsterDetection" to="." method="_on_MonsterDetection_body_entered"]

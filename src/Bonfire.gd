@@ -6,6 +6,7 @@ onready var fire_crackling = $Crackling
 onready var fire_flint = $Flint
 onready var fire_ignite = $Ignite
 onready var animation_player = $AnimationPlayer
+onready var piano_player = $Piano
 onready var label = $Label
 
 export(String, MULTILINE) var message
@@ -33,3 +34,6 @@ func _on_Area2D_body_entered(body):
 		animation_player.queue("Burn")
 		
 		body.encounter_bonfire(self)
+		
+		yield(get_tree().create_timer(.4), "timeout")
+		piano_player.play()

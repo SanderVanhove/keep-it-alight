@@ -1,11 +1,13 @@
 extends KinematicBody2D
 
 const MOVEMENT_SPEED = 50
+const SLOW_MOVEMENT_SPEED = 30
 
 var is_active = false
 var target = null
 var start_position = null
 var is_dead = false
+
 
 const DIE_SOUNDS = [
 	preload("res://audio/monster/die_1.wav"),
@@ -24,24 +26,44 @@ onready var diePlayer = $DiePlayer
 onready var animationPlayer = $AnimationPlayer
 onready var sprite = $Sprite
 
+onready var patrol_start = $Patrol_Start
+onready var patrol_end = $Patrol_End
+onready var original_start_patrol = patrol_start.position
+onready var original_end_patrol = patrol_end.position
+
 
 func _ready():
 	start_position = position
+	target = patrol_end
 
 
 func _process(delta):
 	light.texture_scale = .2
 	
 	if is_dead: return
+	var current_pos = position
+	var vector = Vector2(0, 0)
 	
 	if is_active:
-		var vector = (target.global_position - position).normalized() * MOVEMENT_SPEED
+		vector = (target.global_position - position).normalized() * MOVEMENT_SPEED
 		move_and_slide(vector)
 		animationPlayer.play("Attack")
 		
-		sprite.flip_h = vector[0] > 0
+		
 	else:
 		animationPlayer.play("Idle")
+		
+		if target:
+			var distance = target.global_position - position
+			vector = distance.normalized() * SLOW_MOVEMENT_SPEED
+			move_and_slide(vector)
+			
+			if distance.length() < 10:
+				target = patrol_start if target == patrol_end else patrol_end
+	
+	sprite.flip_h = vector[0] > 0
+	patrol_start.position -= position - current_pos
+	patrol_end.position -= position - current_pos
 
 
 func _on_MonsterDetection_area_entered(area):
@@ -65,9 +87,15 @@ func _on_MonsterDetection_area_entered(area):
 func _on_MonsterDetection_area_exited(area):
 	if area.get_name() == "VisibilityArea":
 		is_active = false
+		target = null
 		
 		heartBeatPlayer.stream = slowHearthBeat
 		heartBeatPlayer.play()
+		
+		yield(get_tree().create_timer(1), "timeout")
+		target = patrol_start
+		patrol_start.position = original_start_patrol
+		patrol_end.position = original_end_patrol
 
 
 func _on_MonsterDetection_body_entered(body):
