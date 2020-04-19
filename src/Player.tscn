@@ -121,7 +121,7 @@ editor_draw_drag_margin = true
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 6 )
-volume_db = -16.046
+volume_db = -12.48
 bus = "Reverb"
 
 [node name="Landing" type="AudioStreamPlayer" parent="."]

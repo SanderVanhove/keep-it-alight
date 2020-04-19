@@ -16,8 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="KeepItAlit"
-run/main_scene="res://World.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Menu.tscn"
+config/icon="res://sprites/Logo/icon.png"
 
 [display]
 

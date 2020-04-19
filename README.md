@@ -13,7 +13,8 @@ Light based platformer
 ## Stack
 
 * Engine: Godot 3.2.1
-* 2D assets: Aseprite
+* 2D pixel assets: Aseprite
 * Tileset creator: Tilesetter
 * Audio recording: Audacity
 * Music: Ableton Live
+* Vector design: Affinity Designer
