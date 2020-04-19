@@ -11,6 +11,7 @@ func _ready():
 
 func _physics_process(delta):
 	if is_done:
+		$Light2D.visible = true
 		$Light2D.energy += 1
 
 
@@ -28,5 +29,5 @@ func _on_Area2D_body_entered(body):
 		is_done = true
 		$Label.visible = true
 		
-		yield(get_tree().create_timer(3), "timeout")
+		yield(get_tree().create_timer(4), "timeout")
 		get_tree().change_scene("res://Menu.tscn")
