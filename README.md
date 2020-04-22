@@ -1,6 +1,8 @@
 # keep-it-alight
 Light based platformer
 
+[Ludum Dare 46 submission.](https://ldjam.com/events/ludum-dare/46/keep-it-alight)
+
 ## Concept
 
 * Platformer
